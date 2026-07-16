@@ -1,0 +1,14 @@
+workload,snapshot,full_copy,rsync,fastcdc,litestream,page_dedup,page_dedup_delta
+"AnkiDroid (phone, mixed)",snap0,237568,237568,46324,237568,50325,50325
+"AnkiDroid (phone, mixed)",snap1,2048000,538083,677891,707290,707290,694738
+"AnkiDroid (phone, mixed)",snap2,2048000,16930,63539,18224,18224,8322
+"AnkiDroid (phone, mixed)",snap3,2060288,14252,83497,19864,19864,8178
+AntennaPod (phone),ap_snap0,3330048,3330048,768076,3330048,1080706,1080706
+AntennaPod (phone),ap_snap1,3330048,8285,36867,7794,7794,1842
+"AntennaPod (tablet, Dimensity)",tab_snap0,3321856,3321856,764025,3321856,1075892,1075892
+"AntennaPod (tablet, Dimensity)",tab_snap1,3321856,2699,18365,2399,2399,500
+SYNTHETIC content-recurrence (A/B toggle),r0,372736,372736,41487,372736,58911,58911
+SYNTHETIC content-recurrence (A/B toggle),r1,372736,10233,13970,14561,14561,863
+SYNTHETIC content-recurrence (A/B toggle),r2,372736,10235,4032,14564,148,37
+SYNTHETIC content-recurrence (A/B toggle),r3,372736,10235,3576,14560,147,38
+SYNTHETIC content-recurrence (A/B toggle),r4,372736,10235,4035,14564,148,37

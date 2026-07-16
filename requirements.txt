@@ -1,0 +1,2 @@
+apsw>=3.51
+matplotlib>=3.9

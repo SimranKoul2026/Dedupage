@@ -1,0 +1,50 @@
+# OS / editor
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Paper / manuscript (kept local; goes to arXiv, not this code repo)
+manuscript/
+MANUSCRIPT.md
+Dedupage.pdf
+Dedupage_arxiv.tar.gz
+arxiv/
+arxiv_abstract.txt
+
+# Third-party artifacts (do not redistribute here)
+2210.04623v1.pdf
+shim/sqlite3.c
+shim/sqlite3.h
+shim/sqlite-amalg.zip
+shim/sqlite-amalgamation-*/
+
+# Compiled binaries / build output
+shim/dedup_c
+shim/dedup_c_arm64
+shim/_t
+*.o
+*.obj
+*.exe
+
+# Generated stores / scratch work dirs
+shim_store/
+shim_store_wal/
+shim/store_c/
+shim/work/
+shim/work_c/
+shim/work_wal/
+shim/rec_work/
+shim/backup_demo/
+shim/sqlite_demo/
+store/
+work/
+
+# Real device data snapshots (personal content; withheld for privacy)
+anki_snapshots/
+antennapod_snapshots/
+tablet_snapshots/
+koreader_snapshots/
