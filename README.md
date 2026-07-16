@@ -82,3 +82,7 @@ page deduplication, WAL-frame change detection, XOR-delta) combines known
 techniques; the contribution is the first real-device measurement of cross-snapshot
 page redundancy for mobile SQLite and an honest evaluation of where the approach
 wins and where it does not.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
