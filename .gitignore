@@ -48,3 +48,20 @@ anki_snapshots/
 antennapod_snapshots/
 tablet_snapshots/
 koreader_snapshots/
+
+# Strengthening experiments: third-party binary + scratch run dirs
+eval_extra/litestream
+eval_extra/*.tar.gz
+eval_extra/ls_run/
+eval_extra/ours_run/
+eval_extra/recover_run/
+eval_extra/e2e_synth/
+eval_extra/smoke/
+# Litestream distribution files (third-party; only our own scripts are tracked)
+eval_extra/LICENSE
+eval_extra/README.md
+eval_extra/etc/
+
+# Manuscript sources / paper PDFs (kept local; go to arXiv, not this code repo)
+Dedupage_arxiv/
+UnofficialPaperSubmission.pdf

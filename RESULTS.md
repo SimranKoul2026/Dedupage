@@ -152,6 +152,37 @@ Honest findings from the fair benchmark:
 - [x] The `sqlite3_vfs` shim (apsw + C/NDK) + benchmark vs Litestream / rsync /
       FastCDC / full-copy, fair (all-compressed). All 5 phases in shim/.
 
+## Strengthening experiments (post-v1, for a stronger venue submission)
+
+**LIVE Litestream baseline (measured, replaces the model)** - eval_extra/
+litestream_vs_pagededup.py. Same 5-interval workload (~10 updates + 10 inserts
+each on a 20k-row WAL DB) run through a real litestream 0.5.16 daemon replicating
+to a local file replica, vs our page-dedup and page-dedup+delta. Measured
+INCREMENTAL bytes: litestream 73.1 KB, page-dedup 47.2 KB (1.55x smaller),
+page-dedup+delta 3.3 KB (21.9x smaller). KEY: live litestream ships MORE than our
+earlier positional model assumed (LTX segment/framing overhead, no cross-interval
+dedup), so page-dedup beats it 1.55x even on a monotonic workload where the model
+had shown a tie. This removes the "modeled not measured" criticism and is more
+favorable than the model. TODO: fold measured litestream numbers into the
+manuscript benchmark/discussion (currently says "model").
+
+**Failure-recovery (eval_extra/failure_recovery.py) - ALL PASS.** Content-addressed
+store + per-snapshot manifests give: (A) a CORRUPTED object is DETECTED at restore
+(decompressed bytes no longer hash to their name -> CorruptionError; silent-wrong
+restore impossible); (B) an INTERRUPTED backup is RESUMABLE - re-running stores
+only the missing objects (reuse, no duplicates) and restores correctly; (C) an
+INTERRUPTED restore is IDEMPOTENT - re-running is byte-exact regardless of a
+partial prior attempt.
+
+**End-to-end transport over a real throttled network (eval_extra/end_to_end.py).**
+Real AntennaPod tablet snapshot pair (3.2 MB DB, one playback change) moved over a
+loopback TCP store server with a token-bucket bandwidth throttle, then downloaded
+back and reconstructed. Backup bundle: full-copy 636 KB (compressed whole DB) vs
+page-dedup+delta 540 B. Measured backup upload time: at 1 Mbps (congested cellular)
+full-copy 5.24 s vs ours 0.07 s (75x faster); at 10 Mbps (4G) 0.52 s vs 0.01 s
+(67x faster). Restore: downloaded the 540 B bundle and reconstructed the DB
+byte-exact over the wire. Closes the "no end-to-end transport evaluation" gap.
+
 ## What remains before submission
 
 1. More intervals per app -> the untouched-fraction curve (have 2 AnkiDroid, 1 AntennaPod).

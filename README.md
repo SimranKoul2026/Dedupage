@@ -39,6 +39,9 @@ link to be added). See [`RESULTS.md`](RESULTS.md) for the full measured results.
 | `shim/benchmark.py` | Benchmark vs Litestream/rsync/FastCDC/full-copy + XOR-delta |
 | `shim/plot_bytes_per_backup.py`, `shim/plot_size_dependence.py` | Regenerate the paper figures |
 | `pull_sqlite_snapshot.sh` | Pull a WAL-checkpointed SQLite snapshot over adb |
+| `eval_extra/litestream_vs_pagededup.py` | Live litestream daemon vs page-dedup, measured |
+| `eval_extra/failure_recovery.py` | Corrupted-object / interrupted-backup / interrupted-restore tests |
+| `eval_extra/end_to_end.py` | End-to-end backup+restore over a throttled TCP link |
 | `benchmark_results.csv` | Aggregate benchmark numbers (no personal content) |
 | `RESULTS.md`, `DESIGN.md`, `IMPLEMENTATION_PLAN.md` | Findings and design docs |
 
