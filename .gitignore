@@ -48,6 +48,8 @@ anki_snapshots/
 antennapod_snapshots/
 tablet_snapshots/
 koreader_snapshots/
+newpipe_snapshots/
+uhabits_snapshots/
 
 # Strengthening experiments: third-party binary + scratch run dirs
 eval_extra/litestream

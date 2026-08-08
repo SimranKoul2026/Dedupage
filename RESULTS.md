@@ -183,6 +183,16 @@ full-copy 5.24 s vs ours 0.07 s (75x faster); at 10 Mbps (4G) 0.52 s vs 0.01 s
 (67x faster). Restore: downloaded the 540 B bundle and reconstructed the DB
 byte-exact over the wire. Closes the "no end-to-end transport evaluation" gap.
 
+**More real apps (coverage).** NewPipe added as a 4th real app: 33-page (132 KB)
+DB, real watch-history change -> 78.8% untouched, page-dedup 28 KB vs 132 KB
+full-copy, 3.27x smaller than FastCDC, 6/7 changed pages are delta candidates.
+Fills the mid-small DB range between KOReader (10 pg) and AnkiDroid (500 pg).
+Loop Habit Tracker (uHabits) added as a 5th app: 8-page (32 KB) DB, real habit
+toggle -> 62.5% untouched, 1.78x smaller than FastCDC (all 3 changed pages are
+delta candidates). FINAL app roster (5): uHabits (8 pg, 62.5%), KOReader
+(10 pg, 60.0%), NewPipe (33 pg, 78.8%), AnkiDroid (500 pg, 96.6%), AntennaPod
+(813 pg, 99.1%) - a strong 5-point size-dependence curve.
+
 ## What remains before submission
 
 1. More intervals per app -> the untouched-fraction curve (have 2 AnkiDroid, 1 AntennaPod).

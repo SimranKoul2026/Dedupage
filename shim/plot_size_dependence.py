@@ -11,9 +11,11 @@ ROOT = Path(__file__).resolve().parent.parent
 
 # (app, DB pages, DB size label, untouched %) — real measured points
 PTS = [
-    ("KOReader\nstats", 10, "40 KB", 60.0),
-    ("AnkiDroid\nstudy", 500, "2.0 MB", 96.6),
-    ("AntennaPod\nplayback", 813, "3.3 MB", 99.1),
+    ("uHabits", 8, "32 KB", 62.5),
+    ("KOReader", 10, "40 KB", 60.0),
+    ("NewPipe", 33, "132 KB", 78.8),
+    ("AnkiDroid", 500, "2.0 MB", 96.6),
+    ("AntennaPod", 813, "3.3 MB", 99.1),
 ]
 
 BLUE, INK, INK2, MUTED, GRID, BASE, SURF = \
@@ -30,18 +32,20 @@ ax.plot(xs, ys, "-", color=BLUE, linewidth=2, zorder=2)
 ax.plot(xs, ys, "o", color=BLUE, markersize=10, markeredgecolor=SURF,
         markeredgewidth=1.5, zorder=3)
 
-# direct labels: one clean staggered label per point (below-right / below-left / above-right)
+# direct labels: staggered to avoid collisions (uHabits/KOReader nearly coincide)
 lab = [
-    ("%.0f%%\nKOReader · 10 pg · 40 KB" % 60.0, (16, -8), "left", "top"),
-    ("%.1f%%\nAnkiDroid · 500 pg · 2.0 MB" % 96.6, (-16, -8), "right", "top"),
-    ("%.1f%%\nAntennaPod · 813 pg · 3.3 MB" % 99.1, (16, 6), "left", "bottom"),
+    ("62.5%\nuHabits · 8 pg", (4, 12), "left", "bottom"),
+    ("60.0%\nKOReader · 10 pg", (7, -13), "left", "top"),
+    ("78.8%\nNewPipe · 33 pg", (-6, 12), "right", "bottom"),
+    ("96.6%\nAnkiDroid · 500 pg", (-14, -8), "right", "top"),
+    ("99.1%\nAntennaPod · 813 pg", (12, 6), "left", "bottom"),
 ]
 for (name, pg, sz, pct), (txt, (dx, dy), ha, va) in zip(PTS, lab):
     ax.annotate(txt, (pg, pct), xytext=(dx, dy), textcoords="offset points",
                 ha=ha, va=va, fontsize=8.5, color=INK2, linespacing=1.35)
 
 ax.set_xscale("log")
-ax.set_xlim(6, 3200)
+ax.set_xlim(5, 3500)
 ax.xaxis.set_major_locator(FixedLocator([10, 100, 1000]))
 ax.xaxis.set_minor_locator(NullLocator())
 ax.xaxis.set_major_formatter(FuncFormatter(lambda n, _: "%g" % n))
@@ -68,7 +72,7 @@ ax.annotate("Small DBs: fixed overhead pages\n(header, freelist, b-tree roots)\n
             arrowprops=dict(arrowstyle="-", color=GRID, lw=1))
 
 fig.text(0.008, -0.02,
-         "Three real cross-app measurements (higher is better). Different apps / change sizes, "
+         "Five real cross-app measurements (higher is better). Different apps / change sizes, "
          "so this indicates a trend, not a controlled sweep (future work).",
          fontsize=6.8, color=MUTED, ha="left")
 
